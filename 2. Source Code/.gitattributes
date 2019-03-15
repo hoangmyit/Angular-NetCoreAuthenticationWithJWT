@@ -1,2 +1,2 @@
-*.* linguist-language=Java
+*.* linguist-language=C#
 *JWT-demo/ClientApp/* linguist-language=Typescript
