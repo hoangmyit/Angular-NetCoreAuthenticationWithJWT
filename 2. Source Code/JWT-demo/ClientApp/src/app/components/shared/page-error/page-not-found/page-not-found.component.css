@@ -1,0 +1,49 @@
+.error_page {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  overflow: auto;
+  background-image: url(/Shared/core/page-error-img.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.error_container {
+  text-align: left;
+  position: sticky;
+  z-index: 900;
+  font-family: "Poppins";
+  margin: 40px;
+}
+
+.error_number {
+  font-size: 150px;
+  font-weight: 600;
+  z-index: 100;
+  margin-bottom: 0;
+  margin-top: 10px;
+  color: #6587C6;
+
+}
+
+.error_desc {
+  font-size: 40px;
+  z-index: 100;
+  color: red;
+}
+
+
+@media (min-width: 769px) {
+  .error_page {
+    max-width: 100%;
+  }
+}
+
+@media (min-width: 1025px) {
+  .error_page {
+    max-width: 100%;
+  }
+}

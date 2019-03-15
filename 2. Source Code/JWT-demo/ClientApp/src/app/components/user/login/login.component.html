@@ -1,0 +1,21 @@
+<div class="container" (window:resize)="setFullHeight()" >
+  <div class="row justify-content-center align-items-center" [ngStyle]="{'height': fullHeight}">
+    <div class="col-5 border px-5">
+      <form (submit)= "loginUser()">
+        <h5 class="text-center text-success my-3">Login</h5>
+        <div class="form-group">
+          <input type="email" class="form-control" id="email" placeholder="Enter email">
+        </div>
+        <div class="form-group">
+          <input type="password" class="form-control" id="password" placeholder="Enter password">
+        </div>
+        <div class="form-group text-center">
+         <label class="text-danger"><!--{{userService.loginerror}}--></label>
+        </div>
+        <div class="text-center my-3"> 
+        <button type="submit" class="btn btn-primary text-center w-50">Login</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
