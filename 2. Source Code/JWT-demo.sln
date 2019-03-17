@@ -3,7 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.489
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JWT-demo", "JWT-demo\JWT-demo.csproj", "{9AFCC71C-AEC9-4742-B098-450994E2F6CF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JWT-demo", "JWT-demo\JWT-demo.csproj", "{9AFCC71C-AEC9-4742-B098-450994E2F6CF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Business", "Business\Business.csproj", "{C4E8DDC8-42D9-48B2-AFC0-50781E3C7EE2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccess", "DataAccess\DataAccess.csproj", "{39192745-3C13-40D5-9472-25EBA7DF1150}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Entity", "Entity\Entity.csproj", "{235D0BC3-C636-476B-90FC-F600525BD66E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common", "Common\Common.csproj", "{7A6BF4AB-1821-447A-9B91-19C5E93FCD5C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataTransfer", "DataTransfer\DataTransfer.csproj", "{C9647DDB-87AB-414D-81D0-3D33083ADBEA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +25,26 @@ Global
 		{9AFCC71C-AEC9-4742-B098-450994E2F6CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9AFCC71C-AEC9-4742-B098-450994E2F6CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9AFCC71C-AEC9-4742-B098-450994E2F6CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4E8DDC8-42D9-48B2-AFC0-50781E3C7EE2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4E8DDC8-42D9-48B2-AFC0-50781E3C7EE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4E8DDC8-42D9-48B2-AFC0-50781E3C7EE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4E8DDC8-42D9-48B2-AFC0-50781E3C7EE2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39192745-3C13-40D5-9472-25EBA7DF1150}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39192745-3C13-40D5-9472-25EBA7DF1150}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39192745-3C13-40D5-9472-25EBA7DF1150}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39192745-3C13-40D5-9472-25EBA7DF1150}.Release|Any CPU.Build.0 = Release|Any CPU
+		{235D0BC3-C636-476B-90FC-F600525BD66E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{235D0BC3-C636-476B-90FC-F600525BD66E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{235D0BC3-C636-476B-90FC-F600525BD66E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{235D0BC3-C636-476B-90FC-F600525BD66E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A6BF4AB-1821-447A-9B91-19C5E93FCD5C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A6BF4AB-1821-447A-9B91-19C5E93FCD5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A6BF4AB-1821-447A-9B91-19C5E93FCD5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A6BF4AB-1821-447A-9B91-19C5E93FCD5C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C9647DDB-87AB-414D-81D0-3D33083ADBEA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9647DDB-87AB-414D-81D0-3D33083ADBEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9647DDB-87AB-414D-81D0-3D33083ADBEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9647DDB-87AB-414D-81D0-3D33083ADBEA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

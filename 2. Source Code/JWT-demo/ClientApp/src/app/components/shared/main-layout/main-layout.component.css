@@ -4,3 +4,6 @@
     bottom: 0;
     width: 100%;
   }
+#navbarTogglerDemo01 .navbar-nav li.active {
+  background-color: blue;
+}

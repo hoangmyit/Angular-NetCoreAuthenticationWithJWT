@@ -6,6 +6,8 @@ import { HomeComponent } from '../components/home/home.component';
 import { MainLayoutComponent } from '../components/shared/main-layout/main-layout.component';
 import { PageNotFoundComponent } from '../components/shared/page-error/page-not-found/page-not-found.component';
 import { LoginComponent } from '../components/user/login/login.component';
+import { AdminComponent } from '../components/admin/admin.component';
+import { ManagerComponent } from '../components/manager/manager.component';
 
 const appRoutes: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -14,6 +16,8 @@ const appRoutes: Routes = [
         component: MainLayoutComponent,
         children: [
             { path: 'home', component: HomeComponent },
+            { path: 'admin', component: AdminComponent },
+            { path: 'manager', component: ManagerComponent },
         ]
     },
     { path: 'login', component: LoginComponent },
@@ -23,6 +27,8 @@ const appRoutes: Routes = [
     declarations: [
         HomeComponent,
         LoginComponent,
+        AdminComponent,
+        ManagerComponent,
     ],
     imports: [
         RouterModule.forRoot(appRoutes,
@@ -36,6 +42,8 @@ const appRoutes: Routes = [
         HomeComponent,
         RouterModule,
         LoginComponent,
+        AdminComponent,
+        ManagerComponent,
     ],
 })
 
