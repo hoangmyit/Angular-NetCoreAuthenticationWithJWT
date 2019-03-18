@@ -12,6 +12,7 @@ import { HomeComponent } from '../components/home/home.component';
 import { LoginComponent } from '../components/user/login/login.component';
 import { AdminComponent } from '../components/admin/admin.component';
 import { ManagerComponent } from '../components/manager/manager.component';
+import { BothComponent } from '../components/both/both.component';
 import { AuthGuard } from '../components/user/auth/auth.guard';
 
 const appRoutes: Routes = [
@@ -21,11 +22,12 @@ const appRoutes: Routes = [
         component: MainLayoutComponent,
         children: [
             { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
-            { path: 'admin', component: AdminComponent, canActivate: [AuthGuard] },
-            { path: 'manager', component: ManagerComponent, canActivate: [AuthGuard] },
+            { path: 'admin', component: AdminComponent, canActivate: [AuthGuard], data: {'roles': ['Admin']} },
+            { path: 'manager', component: ManagerComponent, canActivate: [AuthGuard], data: {'roles': ['Manager']} },
+            { path: 'both', component: BothComponent, canActivate: [AuthGuard], data: {'roles': ['Admin', 'Manager']} },
         ]
     },
-    { path: 'unauthorized', component: UnauthorizedComponent},
+    { path: 'unauthorized', component: UnauthorizedComponent, canActivate: [AuthGuard]},
     { path: 'login', component: LoginComponent },
     { path: '**', component: PageNotFoundComponent }
  ];
@@ -35,6 +37,7 @@ const appRoutes: Routes = [
         LoginComponent,
         AdminComponent,
         ManagerComponent,
+        BothComponent,
     ],
     imports: [
         RouterModule.forRoot(appRoutes,
@@ -52,6 +55,7 @@ const appRoutes: Routes = [
         LoginComponent,
         AdminComponent,
         ManagerComponent,
+        BothComponent,
     ],
 })
 
