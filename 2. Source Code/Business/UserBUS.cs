@@ -7,42 +7,42 @@ namespace Business
 {
     public class UserBUS : IUserBUS
     {
-        public List<Role> GetRole(int userID)
+        public List<RoleDTO> GetRole(int userID)
         {
             throw new NotImplementedException();
         }
 
-        public List<Role> GetRoles()
+        public List<RoleDTO> GetRoles()
         {
-            return new List<Role>()
+            return new List<RoleDTO>()
             {
-                 new Role()
+                 new RoleDTO()
                  {
                      ID = 1, RoleName = "Admin", Description = "Admin Role"
                  },
-                 new Role()
+                 new RoleDTO()
                  {
                      ID = 2, RoleName = "Manager", Description = "Manager Role"
                  },
-                  new Role()
+                  new RoleDTO()
                  {
                      ID = 3, RoleName = "User", Description = "User Role"
                  }
             };
         }
 
-        public User Login(string userName, string password)
+        public UserDTO Login(string userName, string password)
         {
-            User user = null;
+            UserDTO user = null;
             if (userName == "Admin")
             {
-                user = new User();
+                user = new UserDTO();
                 user.ID = 1;
                 user.Username = "Admin";
                 user.Password = password;
-                user.Roles = new List<Role>()
+                user.Roles = new List<RoleDTO>()
                 {
-                    new Role()
+                    new RoleDTO()
                     {
                         ID = 1, RoleName = "Admin", Description = "Admin Role"
                     }
@@ -50,13 +50,13 @@ namespace Business
             } 
             if (userName == "Manager")
             {
-                user = new User();
+                user = new UserDTO();
                 user.ID = 1;
                 user.Username = "Manager";
                 user.Password = password;
-                user.Roles = new List<Role>()
+                user.Roles = new List<RoleDTO>()
                 {
-                    new Role()
+                    new RoleDTO()
                     {
                         ID = 2, RoleName = "Manager", Description = "Manager Role"
                     }
@@ -64,17 +64,17 @@ namespace Business
             }
             if (userName == "Both")
             {
-                user = new User();
+                user = new UserDTO();
                 user.ID = 1;
                 user.Username = "Both";
                 user.Password = password;
-                user.Roles = new List<Role>()
+                user.Roles = new List<RoleDTO>()
                 {
-                    new Role()
+                    new RoleDTO()
                     {
                         ID = 1, RoleName = "Admin", Description = "Admin Role"
                     },
-                    new Role()
+                    new RoleDTO()
                     {
                         ID = 2, RoleName = "Manager", Description = "Manager Role"
                     }
@@ -82,13 +82,13 @@ namespace Business
             }
             if (userName == "User")
             {
-                user = new User();
+                user = new UserDTO();
                 user.ID = 1;
                 user.Username = "User";
                 user.Password = password;
-                user.Roles = new List<Role>()
+                user.Roles = new List<RoleDTO>()
                 {
-                    new Role()
+                    new RoleDTO()
                     {
                         ID = 3, RoleName = "User", Description = "User Role"
                     }

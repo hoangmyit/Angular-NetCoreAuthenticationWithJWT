@@ -2,14 +2,19 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { MainLayoutComponent } from './components/shared/main-layout/main-layout.component';
-import { PageNotFoundComponent } from './components/shared/page-error/page-not-found/page-not-found.component';
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './modules/app-routing.module';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule   } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+// libs
+import { NotifierModule } from 'angular-notifier';
+// layouts
+import { MainLayoutComponent } from './components/shared/main-layout/main-layout.component';
+import { PageNotFoundComponent } from './components/shared/page-error/page-not-found/page-not-found.component';
+import { UnauthorizedComponent } from './components/shared/page-error/unauthorized/unauthorized.component';
+import { AuthInterceptor } from './components/user/auth/auth.interceptor';
 
 
 @NgModule({
@@ -17,6 +22,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppComponent,
     MainLayoutComponent,
     PageNotFoundComponent,
+    UnauthorizedComponent,
   ],
   imports: [
     RouterModule,
@@ -26,13 +32,21 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NotifierModule
   ],
   exports: [
     PageNotFoundComponent,
     MainLayoutComponent,
+    UnauthorizedComponent
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -7,8 +7,8 @@ namespace Business.Interface
 {
     public interface IUserBUS
     {
-        User Login(string userName, string password);
-        List<Role> GetRole(int userID);
-        List<Role> GetRoles();
+        UserDTO Login(string userName, string password);
+        List<RoleDTO> GetRole(int userID);
+        List<RoleDTO> GetRoles();
     }
 }

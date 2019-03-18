@@ -34,12 +34,13 @@ namespace JWT_demo.Controllers
 
         [AllowAnonymous]
         [HttpPost("login")]
-        public IActionResult Login([FromBody]User userParam)
+        public IActionResult Login([FromBody]UserDTO userParam)
         {
-            string token = Authenticate(userParam.Username, userParam.Password);
-            if (token != null)
+            UserDTO user = Authenticate(userParam.Username, userParam.Password);
+            if (user != null)
             {
-                return Ok(token);
+                var result = Ok(user);
+                return result;
             }
             return BadRequest(new { message = "Username or Password is wrong!" });
         }
@@ -49,7 +50,7 @@ namespace JWT_demo.Controllers
         {
             try
             {
-                List<Role> roles = _userBUS.GetRoles();
+                List<RoleDTO> roles = _userBUS.GetRoles();
                 if (roles == null)
                 {
                     return BadRequest(new { message = "nothing in database" });
@@ -63,12 +64,14 @@ namespace JWT_demo.Controllers
             }
         }
 
-        private string Authenticate(string username, string password)
+        private UserDTO Authenticate(string username, string password)
         {
-            string result = null;
-            User user = _userBUS.Login(username, password);
+            UserDTO result = null;
+            UserDTO user = _userBUS.Login(username, password);
             if (user != null)
             {
+                result = new UserDTO();
+                result.Username = user.Username;
                 var tokenHandler = new JwtSecurityTokenHandler();
                 var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
                 var allClaim = user.Roles.Select(x => new Claim(ClaimTypes.Role, x.RoleName)).ToList();
@@ -80,7 +83,7 @@ namespace JWT_demo.Controllers
                     SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
                 };
                 var token = tokenHandler.CreateToken(tokenDescriptor);
-                result = tokenHandler.WriteToken(token);
+                result.Token = tokenHandler.WriteToken(token);
             }
             return result;
         }

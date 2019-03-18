@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DataTransfer
 {
-    public class Role
+    public class RoleDTO
     {
         public int ID { get; set; }
         public string RoleName { get; set; }
