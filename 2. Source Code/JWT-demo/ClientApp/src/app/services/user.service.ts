@@ -22,7 +22,13 @@ export class UserService {
 
     Login(user: UserLogin): Observable<UserToken> {
         const url = this.baseUrl + '/login';
-        const result = this._http.post<UserToken>(url, user, this.httpOptions);
+        const header = {
+            headers: new HttpHeaders({
+                'Content-Type': 'application/json',
+                'No-Auth': 'True'
+            })
+        };
+        const result = this._http.post<UserToken>(url, user, header);
         return result;
     }
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-main-layout',
@@ -6,10 +7,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./main-layout.component.css']
 })
 export class MainLayoutComponent implements OnInit {
+  token = localStorage.getItem('token');
 
-  constructor() { }
+  constructor(
+    private _router: Router,
+  ) { }
 
   ngOnInit() {
   }
-
+  LogOut() {
+    localStorage.removeItem('token');
+    this._router.navigateByUrl('/login');
+  }
 }

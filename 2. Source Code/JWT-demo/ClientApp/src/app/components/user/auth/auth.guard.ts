@@ -15,7 +15,7 @@ export class AuthGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
     if (localStorage.getItem('token')) {
-      if (this._helper.isTokenExpired(localStorage.getItem('token'))) {
+      if (!this._helper.isTokenExpired(localStorage.getItem('token'))) {
         return true;
       }
       localStorage.removeItem('token');

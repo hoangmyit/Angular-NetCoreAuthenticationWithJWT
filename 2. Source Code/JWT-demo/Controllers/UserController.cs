@@ -75,7 +75,7 @@ namespace JWT_demo.Controllers
                 var tokenHandler = new JwtSecurityTokenHandler();
                 var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
                 var allClaim = user.Roles.Select(x => new Claim(ClaimTypes.Role, x.RoleName)).ToList();
-                allClaim.Add(new Claim(ClaimTypes.Name, user.ID.ToString()));
+                allClaim.Add(new Claim(ClaimTypes.Name, user.Username));
                 var tokenDescriptor = new SecurityTokenDescriptor
                 {
                     Subject = new ClaimsIdentity(allClaim),

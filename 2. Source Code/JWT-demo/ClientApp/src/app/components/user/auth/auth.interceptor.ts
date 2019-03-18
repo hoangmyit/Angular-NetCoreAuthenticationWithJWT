@@ -12,14 +12,12 @@ export class AuthInterceptor implements HttpInterceptor {
         private _http: Router
     ) {}
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        if (req.headers.get('No-Auth')) {
-            alert('none required token');
+        if (req.headers.get('No-Auth') === 'True') {
             return next.handle(req);
         }
         const token = localStorage.getItem('token');
         if (token) {
-            console.log('pass token');
-            if (this._helper.isTokenExpired(token)) {
+            if (!this._helper.isTokenExpired(token)) {
                 const cloneReq = req.clone({
                     headers: req.headers.set('Authorization', 'Bearer ' + localStorage.getItem('token'))
                 });

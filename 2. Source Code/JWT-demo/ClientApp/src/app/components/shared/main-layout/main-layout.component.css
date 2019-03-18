@@ -7,3 +7,12 @@
 #navbarTogglerDemo01 .navbar-nav li.active {
   background-color: blue;
 }
+.log-out {
+  color: #007bff;
+  text-decoration: none;
+  background-color: transparent;
+}
+.log-out:hover {
+  color: aliceblue;
+  cursor: pointer;
+}
