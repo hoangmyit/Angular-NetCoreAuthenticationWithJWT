@@ -34,3 +34,33 @@
       </div>
   </div>
 </div>
+</div>
+<div class="card">
+  <div class="card-header bg-info text-white">
+    <h2>Test API</h2>
+  </div>
+  <div class="card-body">
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th>Normal API</th>
+          <th>Admin API</th>
+          <th>Manager API</th>
+          <th>Admin & Manager API</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><button class="btn btn-outline-success" (click)="TestNormal()">Normal</button></td>
+          <td><button class="btn btn-outline-warning" (click)="TestAdmin()">Admin</button></td>
+          <td><button class="btn btn-outline-info" (click)="TestManager()">Manager</button></td>
+          <td><button class="btn btn-outline-primary" (click)="TestBoth()">Admin & Manager</button></td>
+        </tr>
+      </tbody>
+      <tfoot class="thead-light" *ngIf="test">
+        <th colspan="2">Test Roles:</th>
+        <th>{{test.Roles}}</th>
+      </tfoot>
+    </table>
+  </div>
+</div>

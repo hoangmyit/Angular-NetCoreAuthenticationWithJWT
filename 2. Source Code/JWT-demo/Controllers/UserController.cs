@@ -87,5 +87,24 @@ namespace JWT_demo.Controllers
             }
             return result;
         }
+
+        [HttpGet("test")]
+        public IActionResult Test()
+        {
+            try
+            {
+                TestDTO result = new TestDTO();
+                result.Message = "User(Normal) controller work";
+                result.Roles = ((ClaimsIdentity)User.Identity).Claims
+                    .Where(c => c.Type == ClaimTypes.Role)
+                    .Select(c => c.Value).ToList();
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                var reponse = StatusCode(StatusCodes.Status500InternalServerError, ex);
+                return reponse;
+            }
+        }
     }
 }

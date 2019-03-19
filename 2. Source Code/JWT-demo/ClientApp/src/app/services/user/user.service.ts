@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { UserLogin, UserToken } from '../models';
+import { UserLogin, UserToken, TestModel } from '../../models';
 import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable({
@@ -33,6 +33,7 @@ export class UserService {
         const result = this._http.post<UserToken>(url, user, header);
         return result;
     }
+
     roleMatch(allowRole: string[]): boolean {
         const token = localStorage.getItem('token');
         let result = false;
@@ -52,6 +53,12 @@ export class UserService {
                 }
             });
         }
+        return result;
+    }
+
+    Test(): Observable<TestModel> {
+        const url = this.baseUrl + '/test';
+        const result = this._http.get<TestModel>(url);
         return result;
     }
 }

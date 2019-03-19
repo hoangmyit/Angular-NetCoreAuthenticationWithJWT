@@ -24,7 +24,9 @@ export class AuthInterceptor implements HttpInterceptor {
                 return next.handle(cloneReq).pipe(tap(
                     sucess => {},
                     error => {
-                        this._http.navigateByUrl('/unauthorized');
+                        if (error.status === 401) {
+                            this._http.navigateByUrl('/unauthorized');
+                        }
                     }
                 ));
             } else {
