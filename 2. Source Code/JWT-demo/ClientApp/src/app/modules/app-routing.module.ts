@@ -14,6 +14,7 @@ import { AdminComponent } from '../components/admin/admin.component';
 import { ManagerComponent } from '../components/manager/manager.component';
 import { BothComponent } from '../components/both/both.component';
 import { AuthGuard } from '../components/user/auth/auth.guard';
+import { NoAuthGuard } from '../components/user/auth/no-auth.guard';
 
 const appRoutes: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -28,7 +29,7 @@ const appRoutes: Routes = [
         ]
     },
     { path: 'unauthorized', component: UnauthorizedComponent, canActivate: [AuthGuard]},
-    { path: 'login', component: LoginComponent },
+    { path: 'login', component: LoginComponent, canActivate: [NoAuthGuard]},
     { path: '**', component: PageNotFoundComponent }
  ];
 @NgModule({
