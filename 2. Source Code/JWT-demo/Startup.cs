@@ -1,6 +1,8 @@
 using Business;
 using Business.Interface;
 using Common.Helpers;
+using Entity;
+using Microsoft.EntityFrameworkCore.SqlServer;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -12,6 +14,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json.Serialization;
 using System.Text;
+using Microsoft.EntityFrameworkCore;
 
 namespace JWT_demo
 {
@@ -28,6 +31,7 @@ namespace JWT_demo
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCors();
+            services.AddDbContext<JWTDemoDbContext>(options => options.UseSqlServer(@"Server=.;Database=JwtDemo;Trusted_Connection=True;"));
             services.AddMvc()
                 .AddJsonOptions(option => option.SerializerSettings.ContractResolver = new DefaultContractResolver())
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
@@ -35,7 +39,7 @@ namespace JWT_demo
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
-                configuration.RootPath = "ClientApp/dist";
+                configuration.RootPath = "ClientApp /dist";
             });
 
             // configure strongly typed settings objects
