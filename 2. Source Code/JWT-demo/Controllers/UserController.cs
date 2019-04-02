@@ -76,6 +76,9 @@ namespace JWT_demo.Controllers
                 var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
                 var allClaim = user.Roles.Select(x => new Claim(ClaimTypes.Role, x.RoleName)).ToList();
                 allClaim.Add(new Claim(ClaimTypes.Name, user.Username));
+                var a = new SymmetricSecurityKey(key);
+                var ac = Encoding.ASCII.GetString(a.Key);
+                var sign = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature);
                 var tokenDescriptor = new SecurityTokenDescriptor
                 {
                     Subject = new ClaimsIdentity(allClaim),
