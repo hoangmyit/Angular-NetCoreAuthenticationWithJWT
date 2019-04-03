@@ -24,7 +24,9 @@ export class AuthInterceptor implements HttpInterceptor {
                 return next.handle(cloneReq).pipe(tap(
                     sucess => {},
                     error => {
-                        this._http.navigateByUrl('/unauthorized');
+                       if (error.status === 401) {
+                            this._http.navigateByUrl('/unauthorized');
+                       }
                     }
                 ));
             } else {
@@ -35,18 +37,4 @@ export class AuthInterceptor implements HttpInterceptor {
             this._http.navigateByUrl('/login');
         }
     }
-    // intercept(req: HttpRequest < any > , next: HttpHandler): Observable < HttpEvent < any >> {
-    //     if (localStorage.getItem('token')) {
-    //         const cloneReq = req.clone({
-    //             headers: req.headers.set('Authorization', 'Bearer ' + localStorage.getItem('token'))
-    //         });
-    //         return next.handle(cloneReq).pipe(tap(
-    //             sucess => {},
-    //             error => {
-    //                 this._http.navigateByUrl('/unauthorized');
-    //             }
-    //         ));
-    //     }
-    // }
-
 }
