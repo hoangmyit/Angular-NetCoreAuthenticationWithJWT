@@ -9,7 +9,7 @@ namespace DataAccess
         private readonly JWTDemoDbContext _jwtDemoDbContext;
         public UserDAO()
         {
-           
+            _jwtDemoDbContext = new JWTDemoDbContext();
         }
     }
 }
