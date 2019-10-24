@@ -13,8 +13,8 @@ namespace Entity
         [MaxLength(50)]
         public string Username { get; set; }
         [Required]
-        [MaxLength(30)]
+        [MaxLength(100)]
         public string Password { get; set; }
-        public IList<UserRole> UserRole { get; set; }
+        public virtual ICollection<UserRole> UserRoles { get; set; }
     }
 }

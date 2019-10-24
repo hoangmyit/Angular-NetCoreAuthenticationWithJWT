@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Entity.Migrations
 {
-    public partial class jwtdemo : Migration
+    public partial class UserRoleCreateDatabase : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -28,7 +28,7 @@ namespace Entity.Migrations
                     ID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Username = table.Column<string>(maxLength: 50, nullable: false),
-                    Password = table.Column<string>(maxLength: 30, nullable: false)
+                    Password = table.Column<string>(maxLength: 100, nullable: false)
                 },
                 constraints: table =>
                 {

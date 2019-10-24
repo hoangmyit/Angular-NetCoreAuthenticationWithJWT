@@ -5,9 +5,8 @@ using System.Text;
 
 namespace Business.Interface
 {
-    public interface IUserBUS
+    public interface IRoleBUS
     {
-        UserDTO Login(string userName, string password);
-        List<RoleDTO> GetRole(int userID);
+        List<RoleDTO> GetRoles();
     }
 }

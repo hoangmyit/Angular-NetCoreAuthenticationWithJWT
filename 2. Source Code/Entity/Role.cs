@@ -15,6 +15,6 @@ namespace Entity
         public string Name { get; set; }
         [MaxLength(50)]
         public string Description { get; set; }
-        public IList<UserRole> UserRole { get; set; }
+        public virtual ICollection<UserRole> UserRoles { get; set; }
     }
 }

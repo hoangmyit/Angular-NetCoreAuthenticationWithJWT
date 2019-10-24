@@ -22,8 +22,8 @@ namespace Entity
             base.OnModelCreating(builder);
             builder.Entity<Role>().HasIndex(r => r.Name).IsUnique();
             builder.Entity<UserRole>().HasKey(x => new { x.UserID, x.RoleID});
-            builder.Entity<UserRole>().HasOne<User>(u => u.User).WithMany(ur => ur.UserRole).HasForeignKey(x => x.UserID);
-            builder.Entity<UserRole>().HasOne<Role>(u => u.Role).WithMany(r => r.UserRole).HasForeignKey(x => x.RoleID);
+            builder.Entity<UserRole>().HasOne<User>(u => u.User).WithMany(ur => ur.UserRoles).HasForeignKey(x => x.UserID);
+            builder.Entity<UserRole>().HasOne<Role>(u => u.Role).WithMany(r => r.UserRoles).HasForeignKey(x => x.RoleID);
             builder.Entity<Role>().HasData(
                 new Role
                 {

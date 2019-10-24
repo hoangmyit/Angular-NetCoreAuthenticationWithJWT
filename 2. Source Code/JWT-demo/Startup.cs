@@ -15,6 +15,10 @@ using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json.Serialization;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
+using DataAccess.Interface;
+using DataAccess;
+using JWT_demo.Controllers;
+using Microsoft.Extensions.Options;
 
 namespace JWT_demo
 {
@@ -31,7 +35,7 @@ namespace JWT_demo
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCors();
-            services.AddDbContext<JWTDemoDbContext>(options => options.UseSqlServer(@"Server=.;Database=JwtDemo;Trusted_Connection=True;"));
+            services.AddDbContext<JWTDemoDbContext>(options => options.UseSqlServer(Configuration["ConnectionString:UserDB"]));
             services.AddMvc()
                 .AddJsonOptions(option => option.SerializerSettings.ContractResolver = new DefaultContractResolver())
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
@@ -68,7 +72,12 @@ namespace JWT_demo
             });
 
             // configure DI for application services
+            
             services.AddScoped<IUserBUS, UserBUS>();
+            services.AddScoped<IRoleBUS, RoleBUS>();
+            services.AddScoped<IBaseDAO<User>, UserDAO>();
+            services.AddScoped<IBaseDAO<Role>, RoleDAO>();
+            services.AddScoped<IBaseDAO<UserRole>, UserRoleDAO>();
 
         }
 

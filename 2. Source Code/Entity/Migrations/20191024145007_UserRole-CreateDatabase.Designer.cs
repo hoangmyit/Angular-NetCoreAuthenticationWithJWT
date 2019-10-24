@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Entity.Migrations
 {
     [DbContext(typeof(JWTDemoDbContext))]
-    [Migration("20190320092821_jwt-demo")]
-    partial class jwtdemo
+    [Migration("20191024145007_UserRole-CreateDatabase")]
+    partial class UserRoleCreateDatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -69,7 +69,7 @@ namespace Entity.Migrations
 
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasMaxLength(30);
+                        .HasMaxLength(100);
 
                     b.Property<string>("Username")
                         .IsRequired()
