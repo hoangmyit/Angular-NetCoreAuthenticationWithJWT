@@ -25,10 +25,12 @@ namespace JWT_demo.Controllers
     public class UserController : ControllerBase
     {
         private IUserBUS _userBUS;
+        private IRoleBUS _roleBUS;
         private readonly AppSettings _appSettings;
-        public UserController(IOptions<AppSettings> appSettings)
+        public UserController(IOptions<AppSettings> appSettings, IUserBUS userBUS, IRoleBUS _roleBUS)
         {
-            _userBUS = new UserBUS();
+            this._userBUS = userBUS;
+            this._roleBUS = _roleBUS;
             _appSettings = appSettings.Value;
         }
 
@@ -50,7 +52,7 @@ namespace JWT_demo.Controllers
         {
             try
             {
-                List<RoleDTO> roles = _userBUS.GetRoles();
+                List<RoleDTO> roles = _roleBUS.GetRoles();
                 if (roles == null)
                 {
                     return BadRequest(new { message = "nothing in database" });
@@ -76,11 +78,14 @@ namespace JWT_demo.Controllers
                 var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
                 var allClaim = user.Roles.Select(x => new Claim(ClaimTypes.Role, x.RoleName)).ToList();
                 allClaim.Add(new Claim(ClaimTypes.Name, user.Username));
+                var a = new SymmetricSecurityKey(key);
+                var ac = Encoding.ASCII.GetString(a.Key);
+                var sign = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature);
                 var tokenDescriptor = new SecurityTokenDescriptor
                 {
                     Subject = new ClaimsIdentity(allClaim),
                     Expires = DateTime.UtcNow.AddDays(7),
-                    SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+                    SigningCredentials = sign
                 };
                 var token = tokenHandler.CreateToken(tokenDescriptor);
                 result.Token = tokenHandler.WriteToken(token);

@@ -1,6 +1,8 @@
 using Business;
 using Business.Interface;
 using Common.Helpers;
+using Entity;
+using Microsoft.EntityFrameworkCore.SqlServer;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -12,6 +14,12 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json.Serialization;
 using System.Text;
+using Microsoft.EntityFrameworkCore;
+using DataAccess.Interface;
+using DataAccess;
+using JWT_demo.Controllers;
+using Microsoft.Extensions.Options;
+using Newtonsoft.Json;
 
 namespace JWT_demo
 {
@@ -28,14 +36,20 @@ namespace JWT_demo
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCors();
+            services.AddDbContext<JWTDemoDbContext>(options => options
+                .UseLazyLoadingProxies()
+                .UseSqlServer(Configuration["ConnectionString:UserDB"]));
             services.AddMvc()
                 .AddJsonOptions(option => option.SerializerSettings.ContractResolver = new DefaultContractResolver())
-                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
+                .AddJsonOptions(options => {
+                    options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+                });
 
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
-                configuration.RootPath = "ClientApp/dist";
+                configuration.RootPath = "ClientApp /dist";
             });
 
             // configure strongly typed settings objects
@@ -56,15 +70,20 @@ namespace JWT_demo
                 x.SaveToken = true;
                 x.TokenValidationParameters = new TokenValidationParameters
                 {
-                    ValidateIssuerSigningKey = true,
                     IssuerSigningKey = new SymmetricSecurityKey(key),
+                    ValidateIssuerSigningKey = true,
                     ValidateIssuer = false,
                     ValidateAudience = false
                 };
             });
 
             // configure DI for application services
+            
             services.AddScoped<IUserBUS, UserBUS>();
+            services.AddScoped<IRoleBUS, RoleBUS>();
+            services.AddScoped<IBaseDAO<User>, UserDAO>();
+            services.AddScoped<IBaseDAO<Role>, RoleDAO>();
+            services.AddScoped<IBaseDAO<UserRole>, UserRoleDAO>();
 
         }
 

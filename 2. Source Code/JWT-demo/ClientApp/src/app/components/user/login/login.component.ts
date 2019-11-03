@@ -52,7 +52,8 @@ export class LoginComponent implements OnInit {
         }
       },
       error => {
-        this._notifier.notify('error', error.message);
+        console.log(error);
+        this._notifier.notify('error', error.error.Message);
       }
     );
   }
