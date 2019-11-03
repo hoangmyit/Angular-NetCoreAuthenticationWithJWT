@@ -110,7 +110,9 @@ namespace Entity.Migrations
 
                     b.Property<int>("RoleID");
 
-                    b.Property<int>("ID");
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.HasKey("UserID", "RoleID");
 

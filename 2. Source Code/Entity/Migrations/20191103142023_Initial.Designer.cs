@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Entity.Migrations
 {
     [DbContext(typeof(JWTDemoDbContext))]
-    [Migration("20191024145007_UserRole-CreateDatabase")]
-    partial class UserRoleCreateDatabase
+    [Migration("20191103142023_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -112,7 +112,9 @@ namespace Entity.Migrations
 
                     b.Property<int>("RoleID");
 
-                    b.Property<int>("ID");
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.HasKey("UserID", "RoleID");
 
@@ -156,12 +158,12 @@ namespace Entity.Migrations
             modelBuilder.Entity("Entity.UserRole", b =>
                 {
                     b.HasOne("Entity.Role", "Role")
-                        .WithMany("UserRole")
+                        .WithMany("UserRoles")
                         .HasForeignKey("RoleID")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("Entity.User", "User")
-                        .WithMany("UserRole")
+                        .WithMany("UserRoles")
                         .HasForeignKey("UserID")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

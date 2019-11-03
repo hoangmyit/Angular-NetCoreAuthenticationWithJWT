@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Entity.Migrations
 {
-    public partial class UserRoleCreateDatabase : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -42,6 +42,7 @@ namespace Entity.Migrations
                     UserID = table.Column<int>(nullable: false),
                     RoleID = table.Column<int>(nullable: false),
                     ID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn)
                 },
                 constraints: table =>
                 {

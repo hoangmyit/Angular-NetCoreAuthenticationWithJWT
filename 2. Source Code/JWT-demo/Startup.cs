@@ -19,6 +19,7 @@ using DataAccess.Interface;
 using DataAccess;
 using JWT_demo.Controllers;
 using Microsoft.Extensions.Options;
+using Newtonsoft.Json;
 
 namespace JWT_demo
 {
@@ -35,10 +36,15 @@ namespace JWT_demo
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCors();
-            services.AddDbContext<JWTDemoDbContext>(options => options.UseSqlServer(Configuration["ConnectionString:UserDB"]));
+            services.AddDbContext<JWTDemoDbContext>(options => options
+                .UseLazyLoadingProxies()
+                .UseSqlServer(Configuration["ConnectionString:UserDB"]));
             services.AddMvc()
                 .AddJsonOptions(option => option.SerializerSettings.ContractResolver = new DefaultContractResolver())
-                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
+                .AddJsonOptions(options => {
+                    options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+                });
 
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
